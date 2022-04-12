@@ -52,7 +52,7 @@
     menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
   };
 
-  class Product{
+  class Product {
     constructor(id, data) {
       const thisProduct = this;
       
@@ -65,9 +65,8 @@
       thisProduct.initOrderForm();
       thisProduct.initAmountWidget();
       thisProduct.processOrder();
-
-      console.log('new Product:', thisProduct);
     }
+
     renderInMenu() {
       const thisProduct = this;
       /* generate HTML based on template */
@@ -101,7 +100,7 @@
         /* find active product (product that has active class) */
         const activeProduct = document.querySelector(select.all.menuProductsActive);
         /* if there is active product and it's not thisProduct.element, remove class active from it */
-        if (activeProduct && activeProduct != thisProduct.element) {
+        if (activeProduct && activeProduct !== thisProduct.element) {
           activeProduct.classList.remove('active');
         }
         /* toggle active class on thisProduct.element */
@@ -117,7 +116,7 @@
         thisProduct.processOrder();
       });
 
-      for(let input of thisProduct.formInputs){
+      for (let input of thisProduct.formInputs) {
         input.addEventListener('change', function(){
           thisProduct.processOrder();
         });
@@ -162,7 +161,7 @@
               optionImage.classList.add(classNames.menuProduct.imageVisible);
             }
           } else if (formData[paramId] && !formData[paramId].includes(optionId)) {
-            if (option.default == true) {
+            if (option.default === true) {
               price -= option.price;
             }
             if (optionImage) {
