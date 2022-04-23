@@ -340,12 +340,10 @@
       const thisCart = this;
       /* generate HTML based on template */
       const generatedHTML = templates.cartProduct(menuProduct);
-      /* create element using utils.createElementFromHTML */
-      thisCart.element = utils.createDOMFromHTML(generatedHTML);
-      /* find menu container */
-      const cartContainer = document.querySelector(select.containerOf.cart);
-      /* add element to menu */
-      cartContainer.appendChild(thisCart.element);
+      /* create element using utils.createDOMFromHTML */
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+      /* add element to cart */
+      thisCart.dom.productList.appendChild(generatedDOM);
     }
   }
 
