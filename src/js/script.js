@@ -261,7 +261,7 @@
       const thisWidget = this;
       thisWidget.getElements(element);
       thisWidget.initActions();
-      thisWidget.setValue(settings.amountWidget.defaultValue);
+      thisWidget.setValue(thisWidget.input.value || settings.amountWidget.defaultValue);
     }
 
     getElements(element){
@@ -379,7 +379,7 @@
       
       thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
       //check if the cart is empty
-      if (thisCart.totalNumber == 0) {
+      if (thisCart.totalNumber === 0) {
         thisCart.deliveryFee = 0;
         thisCart.totalPrice = 0;
       }
@@ -516,6 +516,7 @@
       const thisApp = this;
       thisApp.data = {};
       const url = settings.db.url + '/' + settings.db.products;
+      
       fetch(url)
         .then(function (rawResponse) {
           return rawResponse.json();
@@ -526,7 +527,11 @@
           thisApp.data.products = parsedResponse;
           /* execute initMenu method */
           thisApp.initMenu();
+        })
+        .catch((error) => {
+          console.error('Error:', error);
         });
+      
       console.log('thisApp.data', JSON.stringify(thisApp.data));
     },
 
